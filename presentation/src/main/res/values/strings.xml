@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Arch</string>
+    <!--Errors-->
+    <string name="exception_message_generic">Error</string>
+    <string name="exception_message_no_connection">Error</string>
+    <string name="exception_message_user_not_found">Error</string>
+    <string name="error_message_username">Error</string>
+    <string name="error_message_password">Error</string>
+</resources>
