@@ -7,7 +7,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.twentytwoseven.android.data.database.tables.SessionTable;
+import com.tts.data.database.tables.SessionTable;
 
 import java.util.List;
 

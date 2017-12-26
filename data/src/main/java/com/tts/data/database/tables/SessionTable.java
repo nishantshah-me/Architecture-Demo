@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.IntDef;
 
-import com.twentytwoseven.android.data.entity.DataEntity;
+
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -15,7 +15,7 @@ import java.lang.annotation.RetentionPolicy;
  */
 
 @Entity(tableName = "session")
-public class SessionTable implements DataEntity {
+public class SessionTable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

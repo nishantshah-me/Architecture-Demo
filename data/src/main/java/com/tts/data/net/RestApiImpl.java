@@ -149,7 +149,7 @@ public class RestApiImpl implements RestApi {
                     return;
                 }
                 //Synchronous request
-                Response<SessionEntity> sessionEntity = customerService().createSession("", "", isBackgroundRequest,API_VERSION, "username","pasword").execute();
+                Response<SessionEntity> sessionEntity = customerService().createSession("", "", isBackgroundRequest,API_VERSION, "username","password").execute();
                 if(sessionEntity.isSuccessful()){
                     if(sessionEntity.body()!=null) {
                         //emitting data after transforming.
