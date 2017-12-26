@@ -35,7 +35,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -94,6 +94,7 @@ public class RestApiImpl implements RestApi {
         return new Retrofit.Builder()
             .baseUrl(endpointUrl)
             .client(okHttp)
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
             .callbackExecutor(executorService)
             .build();

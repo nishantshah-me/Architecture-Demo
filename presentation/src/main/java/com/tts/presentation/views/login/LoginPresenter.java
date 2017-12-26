@@ -71,6 +71,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         }
 
         @Override public void onError(Throwable e) {
+           super.onError(e);
            mView.hideLoading();
            mView.showErrorMessage(ErrorMessageFactory.create((Context) mView,e));
            mView.showRetry("Retry");

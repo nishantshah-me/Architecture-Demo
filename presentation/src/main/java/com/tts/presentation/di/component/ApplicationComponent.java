@@ -4,7 +4,8 @@ package com.tts.presentation.di.component;
 
 import android.content.Context;
 
-import com.tts.data.di.modules.DatabaseModule;
+import com.tts.data.di.modules.DataModule;
+
 import com.tts.data.net.RestApi;
 import com.tts.domain.executor.PostExecutionThread;
 import com.tts.domain.repository.SessionRepository;
@@ -18,7 +19,7 @@ import dagger.Component;
 
 
 @Singleton // Constraints this component to one-per-application or unscoped bindings.
-@Component(modules = {AppModule.class, DatabaseModule.class})
+@Component(modules = {AppModule.class, DataModule.class})
 public interface ApplicationComponent {
 
     void inject(App component);

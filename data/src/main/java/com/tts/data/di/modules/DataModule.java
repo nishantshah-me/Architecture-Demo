@@ -20,7 +20,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DatabaseModule {
+public class DataModule {
 
     @Provides
     @Singleton
