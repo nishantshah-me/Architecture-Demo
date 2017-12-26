@@ -1,9 +1,9 @@
-package com.tts.presentation.inject.component;
+package com.tts.presentation.di.component;
 
 
-import com.tts.presentation.inject.PerActivity;
-import com.tts.presentation.inject.module.AppModule;
-import com.tts.presentation.inject.module.NetworkModule;
+import com.tts.presentation.di.PerActivity;
+import com.tts.presentation.di.module.AppModule;
+import com.tts.presentation.di.module.NetworkModule;
 import com.tts.presentation.views.login.LoginPresenter;
 
 import javax.inject.Singleton;

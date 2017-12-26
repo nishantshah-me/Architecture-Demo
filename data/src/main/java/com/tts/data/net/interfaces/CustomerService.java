@@ -24,7 +24,6 @@ public interface CustomerService {
     @POST(value = "/sessions")
     Call<SessionEntity> createSession(@Header("X-SESSION-TOKEN") String sessionToken
             , @Header("X-REQUEST-TOKEN") String requestToken
-            , @Header("X-IS-BACKGROUND") boolean isBackground
             , @Query("version") int apiVersion
             , @Query("username") String username,
                 @Query("password")String password);

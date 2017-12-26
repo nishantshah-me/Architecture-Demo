@@ -1,4 +1,4 @@
-package com.tts.presentation.inject.module;
+package com.tts.presentation.di.module;
 
 import android.app.Application;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Context;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Rfc3339DateJsonAdapter;
-import com.tts.data.repository.datasource.CloudDataSource;
 
 
 import java.util.Date;
@@ -75,13 +74,6 @@ public class NetworkModule {
                 .baseUrl(mBaseUrl)
                 .client(okHttpClient)
                 .build();
-    }
-
-    @Provides
-    @Singleton
-    @SuppressWarnings("unused")
-    public CloudDataSource providesCloudDataSource(Retrofit retrofit) {
-        return retrofit.create(CloudDataSource.class);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.tts.presentation.inject.module;
+package com.tts.presentation.di.module;
 
 /**
  * Created by user on 04-Aug-17.
@@ -7,7 +7,7 @@ package com.tts.presentation.inject.module;
 import android.app.Activity;
 
 
-import com.tts.presentation.inject.PerActivity;
+import com.tts.presentation.di.PerActivity;
 
 import dagger.Module;
 import dagger.Provides;

@@ -2,8 +2,8 @@ package com.tts.domain.interactor;
 
 
 
-import com.tts.domain.Customer;
-import com.tts.domain.repository.CustomerRepository;
+import com.tts.domain.Session;
+import com.tts.domain.repository.SessionRepository;
 
 import javax.inject.Inject;
 
@@ -13,18 +13,18 @@ import io.reactivex.Observable;
  * Created by user on 18-Oct-17.
  */
 
-public class LoginUseCase extends UseCase<Customer,LoginUseCase.Params> {
+public class CreateSessionUseCase extends UseCase<Session,CreateSessionUseCase.Params> {
 
-    private final CustomerRepository customerRepository;
+    private final SessionRepository customerRepository;
 
     @Inject
-    public LoginUseCase(CustomerRepository customerRepository) {
+    public CreateSessionUseCase(SessionRepository customerRepository) {
         super();
         this.customerRepository = customerRepository;
     }
 
     @Override
-    Observable<Customer> buildUseCaseObservable(Params params) {
+    Observable<Session> buildUseCaseObservable(Params params) {
         //Place where we decide who is going to execute our request.
         return customerRepository.user(params.email,params.password);
     }

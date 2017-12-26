@@ -1,13 +1,7 @@
 package com.tts.presentation.mapper;
 
 
-import com.tts.presentation.inject.PerActivity;
-
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import com.tts.presentation.di.PerActivity;
 
 import javax.inject.Inject;
 

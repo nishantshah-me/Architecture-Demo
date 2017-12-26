@@ -77,6 +77,6 @@ public interface RestApi {
     CustomerService customerService();
 
     //API
-    Observable<Response<SessionEntity>> createSession(String username, String password, boolean rememberMe, boolean isBackgroundRequest);
+    Observable<Response<SessionEntity>> createSession(String username, String password);
 
 }

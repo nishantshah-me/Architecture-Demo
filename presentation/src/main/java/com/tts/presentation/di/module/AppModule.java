@@ -1,9 +1,11 @@
-package com.tts.presentation.inject.module;
+package com.tts.presentation.di.module;
 
 import android.app.Application;
 import android.content.Context;
 
 
+import com.tts.domain.executor.PostExecutionThread;
+import com.tts.presentation.di.UIThread;
 import com.tts.presentation.navigation.Navigator;
 
 import javax.inject.Singleton;
@@ -19,7 +21,7 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
-    Application mApplication;
+    private final Application mApplication;
 
     public AppModule(Application mApplication) {
         this.mApplication = mApplication;
@@ -42,4 +44,18 @@ public class AppModule {
     Navigator provideNavigator(){
         return new Navigator();
     }
+
+    @Provides
+    @Singleton
+    Context providesApplicationContext() {
+        return mApplication;
+    }
+
+    @Provides
+    @Singleton
+    PostExecutionThread providePostExecutionThread(UIThread uiThread) {
+        return uiThread;
+    }
+
+
 }

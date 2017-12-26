@@ -5,4 +5,7 @@ package com.tts.data.entity;
  */
 
 public class SessionEntity {
+
+    public String token;
+    public String customerId;
 }

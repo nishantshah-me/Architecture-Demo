@@ -137,19 +137,17 @@ public class RestApiImpl implements RestApi {
      *
      * @param username            the customer's username (email address)
      * @param password            authenticates the customer
-     * @param rememberMe          {code true} if the session is to be maintained
-     * @param isBackgroundRequest {@code true} if the request is invoked in the background
      * @return If successful, the customer's session data
      */
     @Override
-    public Observable<Response<SessionEntity>> createSession(String username, String password, boolean rememberMe, boolean isBackgroundRequest) {
+    public Observable<Response<SessionEntity>> createSession(String username, String password) {
         return Observable.create(emitter -> {
                 if(!isThereInternetConnection()){
                     emitter.onError(new NetworkUnavailableException());
                     return;
                 }
                 //Synchronous request
-                Response<SessionEntity> sessionEntity = customerService().createSession("", "", isBackgroundRequest,API_VERSION, "username","password").execute();
+                Response<SessionEntity> sessionEntity = customerService().createSession("", "",API_VERSION, "username","password").execute();
                 if(sessionEntity.isSuccessful()){
                     if(sessionEntity.body()!=null) {
                         //emitting data after transforming.

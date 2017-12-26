@@ -1,10 +1,10 @@
-package com.tts.presentation.inject.component;
+package com.tts.presentation.di.component;
 
 import android.app.Activity;
 
 
-import com.tts.presentation.inject.PerActivity;
-import com.tts.presentation.inject.module.ActivityModule;
+import com.tts.presentation.di.PerActivity;
+import com.tts.presentation.di.module.ActivityModule;
 
 import dagger.Component;
 

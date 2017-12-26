@@ -3,42 +3,34 @@ package com.tts.presentation.views.login;
 import android.content.Context;
 
 
-import com.tts.data.entity.CustomerEntity;
-import com.tts.data.repository.CustomerDataRepository;
-import com.tts.data.repository.datasource.CloudDataSource;
-import com.tts.domain.Customer;
-import com.tts.domain.interactor.DefaultConsumer;
+import com.tts.domain.Session;
+import com.tts.domain.interactor.CreateSessionUseCase;
 import com.tts.domain.interactor.DefaultObserver;
-import com.tts.domain.interactor.LoginUseCase;
-import com.tts.presentation.App;
 import com.tts.presentation.exception.ErrorMessageFactory;
+import com.tts.presentation.di.PerActivity;
 import com.tts.presentation.mapper.ModelDataMapper;
 import com.tts.presentation.util.ValidationUtil;
 import com.tts.user.arch.R;
 
 import javax.inject.Inject;
 
-import io.reactivex.disposables.Disposable;
-
 /**
  * Created by webwerks1 on 11/7/17.
  */
-
+@PerActivity
 public class LoginPresenter implements LoginContract.Presenter {
 
-    LoginUseCase useCase;
-    ModelDataMapper modelDataMapper;
-    @Inject
-    CloudDataSource cloudDataSource;
+    private final CreateSessionUseCase createSessionUseCase;
+    private final ModelDataMapper modelDataMapper;
 
-    private Disposable networkCall;
     private LoginContract.View mView;
 
-    <T extends Context & LoginContract.View> LoginPresenter(T mView) {
-        this.mView = mView;
-        ((App) mView.getApplicationContext()).getNetworkComponent().inject(this);
-        useCase=new LoginUseCase(new CustomerDataRepository(cloudDataSource));
+    @Inject
+    public LoginPresenter(CreateSessionUseCase createSessionUseCase, ModelDataMapper modelDataMapper) {
+        this.createSessionUseCase = createSessionUseCase;
+        this.modelDataMapper = modelDataMapper;
     }
+
 
     @Override
     public void start() {
@@ -49,10 +41,8 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void destroy() {
         //Prevent memory leaks.
         mView = null;
-        //Stop observing as view no longer exist.
-        if (networkCall != null) {
-            networkCall.dispose();
-        }
+        //You must dispose rx.
+        createSessionUseCase.dispose();
     }
 
     @Override
@@ -67,10 +57,10 @@ public class LoginPresenter implements LoginContract.Presenter {
         }
 
         mView.showLoading();
-        useCase.execute(new UserDetailsObserver(), LoginUseCase.Params.forUser(email,password));
+        createSessionUseCase.execute(new UserDetailsObserver(), CreateSessionUseCase.Params.forUser(email,password));
     }
 
-    private final class UserDetailsObserver extends DefaultObserver<Customer> {
+    private final class UserDetailsObserver extends DefaultObserver<Session> {
 
         @Override public void onComplete() {
             mView.hideLoading();
@@ -82,7 +72,7 @@ public class LoginPresenter implements LoginContract.Presenter {
            mView.showRetry("Retry");
         }
 
-        @Override public void onNext(Customer user) {
+        @Override public void onNext(Session user) {
            mView.navigateToHome();
         }
     }

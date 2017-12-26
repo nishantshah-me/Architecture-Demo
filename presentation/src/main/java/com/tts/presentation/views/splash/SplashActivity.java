@@ -1,5 +1,6 @@
 package com.tts.presentation.views.splash;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,7 +13,10 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        navigator.navigateToLogin(this);
+        new Handler().postDelayed(() -> {
+            navigator.navigateToLogin(SplashActivity.this);
+            finish();
+        },1500);
     }
 
     @Override

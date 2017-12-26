@@ -20,8 +20,6 @@ import javax.inject.Singleton;
 @Singleton
 public class Navigator {
 
-    private static final String IDENTIFIER = "identifier";
-
     @Inject
     public Navigator() {
     }
@@ -31,6 +29,10 @@ public class Navigator {
             Intent intent = LoginActivity.getCallingIntent(context);
             context.startActivity(intent);
         }
+    }
+
+    public void navigateToHome(Context context) {
+        //TODO navigate to home.
     }
 
 

@@ -1,4 +1,4 @@
-package com.tts.presentation.inject;
+package com.tts.presentation.di;
 
 import java.lang.annotation.Retention;
 

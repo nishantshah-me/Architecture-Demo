@@ -28,8 +28,6 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
-
-
     @BindView(R.id.btnLogin)
     Button btnLogin;
     @BindView(R.id.etEmail)
@@ -103,7 +101,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void navigateToHome() {
-
+        navigator.navigateToHome(this);
     }
 
     @Override
