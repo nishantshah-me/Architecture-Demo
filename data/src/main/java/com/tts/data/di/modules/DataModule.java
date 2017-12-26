@@ -5,6 +5,8 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 
+import com.commonsware.cwac.saferoom.SafeHelperFactory;
+import com.tts.data.BuildConfig;
 import com.tts.data.database.AppDatabase;
 import com.tts.data.database.dao.SessionDao;
 import com.tts.data.mapper.SessionDataMapper;
@@ -34,10 +36,10 @@ public class DataModule {
         String DB_NAME = "databasename_db";
         RoomDatabase.Builder<AppDatabase> dbBuilder = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME);
 
-       /* if (BuildConfig.BUILD_TYPE.equals("release")) {
+        if (BuildConfig.BUILD_TYPE.equals("release")) {
             SafeHelperFactory factory = new SafeHelperFactory(new char[]{'d','p','U','a','r','K','f','d','N','2','l','N','c','M','J','2','f','P','t','E','/','='});
             dbBuilder.openHelperFactory(factory);
-        }*/
+        }
 
         return dbBuilder.build();
     }
