@@ -18,5 +18,5 @@ public interface SessionRepository {
      * @param emailId The email id used to retrieve user data.
      * @param password The password used to retrieve user data.
      */
-    Observable<Session> user(String emailId, String password);
+    Observable<Session> createSession(String emailId, String password);
 }

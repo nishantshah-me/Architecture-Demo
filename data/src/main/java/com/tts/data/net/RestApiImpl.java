@@ -23,6 +23,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import okhttp3.CertificatePinner;
@@ -40,12 +41,12 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 /**
  * Implementation of {@code RestApi} as per CORE
  */
+@Singleton
 public class RestApiImpl implements RestApi {
 
     private final Retrofit api;
     private final Context context;
-    private final static int API_VERSION = 11;
-    String endpointUrl = "endPoint";
+    String endpointUrl = "http://api.example.net";
 
     @Inject
     public RestApiImpl(@NonNull final Context context) {
@@ -66,14 +67,7 @@ public class RestApiImpl implements RestApi {
 
         final Interceptor requestDefaultsInterceptor = chain -> {
             Request original = chain.request();
-            HttpUrl originalUrl = original.url();
-
-            HttpUrl url = originalUrl.newBuilder()
-                .addQueryParameter("version", String.valueOf(RestApiImpl.API_VERSION))
-                .build();
-
             Request.Builder requestBuilder = original.newBuilder()
-                .url(url)
                 .method(original.method(), original.body());
 
             if (tokens != null && !TextUtils.isEmpty(tokens.getSessionToken()))
@@ -147,7 +141,7 @@ public class RestApiImpl implements RestApi {
                     return;
                 }
                 //Synchronous request
-                Response<SessionEntity> sessionEntity = customerService().createSession("", "",API_VERSION, "username","password").execute();
+                Response<SessionEntity> sessionEntity = customerService().createSession("", "", "username","password").execute();
                 if(sessionEntity.isSuccessful()){
                     if(sessionEntity.body()!=null) {
                         //emitting data after transforming.

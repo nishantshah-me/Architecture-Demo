@@ -60,6 +60,10 @@ public class LoginPresenter implements LoginContract.Presenter {
         createSessionUseCase.execute(new UserDetailsObserver(), CreateSessionUseCase.Params.forUser(email,password));
     }
 
+    public void setView(LoginContract.View view) {
+        mView=view;
+    }
+
     private final class UserDetailsObserver extends DefaultObserver<Session> {
 
         @Override public void onComplete() {

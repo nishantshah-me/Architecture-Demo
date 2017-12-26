@@ -47,12 +47,6 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Context providesApplicationContext() {
-        return mApplication;
-    }
-
-    @Provides
-    @Singleton
     PostExecutionThread providePostExecutionThread(UIThread uiThread) {
         return uiThread;
     }

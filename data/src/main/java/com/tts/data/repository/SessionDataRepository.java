@@ -30,7 +30,7 @@ public class SessionDataRepository implements SessionRepository {
 
 
     @Override
-    public Observable<Session> user(String emailId, String password) {
+    public Observable<Session> createSession(String emailId, String password) {
         return restApi.createSession(emailId, password).map(mapper::map);
     }
 }

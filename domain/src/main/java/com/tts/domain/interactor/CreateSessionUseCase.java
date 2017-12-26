@@ -26,7 +26,7 @@ public class CreateSessionUseCase extends UseCase<Session,CreateSessionUseCase.P
     @Override
     Observable<Session> buildUseCaseObservable(Params params) {
         //Place where we decide who is going to execute our request.
-        return customerRepository.user(params.email,params.password);
+        return customerRepository.createSession(params.email,params.password);
     }
 
     public static final class Params {

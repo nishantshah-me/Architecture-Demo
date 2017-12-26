@@ -29,6 +29,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 
 
@@ -36,11 +38,11 @@ import butterknife.ButterKnife;
  * Created by webwerks1 on 11/7/17.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
-    public static final int REQ_CODE_FOR_ACTIVITY = 0;
-    protected static final String TAG = BaseActivity.class.getSimpleName();
+public class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
     private static final String EXIT_ME = "exit_me";
+    @Inject
     protected T mPresenter;
+
     protected FrameLayout container;
     protected Navigator navigator;
     Toolbar toolbar;
@@ -50,17 +52,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initInjector();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE);
-        mPresenter = getPresenter();
-        setContentView(getLayoutResource());
     }
 
     private void initInjector() {
         navigator = ((App) getApplication()).getApplicationComponent().navigator();
     }
 
-    protected abstract int getLayoutResource();
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -84,13 +81,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         if(mPresenter!=null) {
             mPresenter.start();
         }
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -151,32 +141,5 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         return this;
     }
 
-    /*
-            Every activity must have associated presenter.
-         */
-    protected abstract T getPresenter();
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void on5XXErrors(Throwable throwable) {
-        String message = ErrorMessageFactory.create(this, (Exception) throwable);
-        showErrorMessage(message);
-        hideLoading();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && data.getExtras() != null &&
-                data.getExtras().containsKey(EXIT_ME)) {
-            finish();
-        }
-    }
-
-    protected void finishPreviousActivity() {
-        Intent intent = new Intent();
-        intent.putExtra(EXIT_ME, true);
-        setResult(RESULT_OK, intent);
-        finish();
-    }
 
 }

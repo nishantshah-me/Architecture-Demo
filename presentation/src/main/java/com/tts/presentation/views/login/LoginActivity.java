@@ -14,13 +14,22 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.tts.presentation.App;
+import com.tts.presentation.di.component.ActivityComponent;
+
+
+import com.tts.presentation.di.component.DaggerActivityComponent;
+import com.tts.presentation.di.module.ActivityModule;
 import com.tts.presentation.views.BaseActivity;
 import com.tts.user.arch.R;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import dagger.Provides;
 
 /**
  * Created by webwerks1 on 11/7/17.
@@ -41,11 +50,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        injectPresenter();
     }
 
-    @Override
-    protected int getLayoutResource() {
-        return R.layout.activity_login;
+    private void injectPresenter() {
+        ActivityComponent component = DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .applicationComponent(((App)getApplication()).getApplicationComponent())
+                .build();
+        component.inject(this);
+        mPresenter.setView(this);
     }
 
     public static Intent getCallingIntent(Context context) {
@@ -64,10 +79,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         loadData();
     }
 
-    @Override
-    protected LoginPresenter getPresenter() {
-        return new LoginPresenter(this);
-    }
+
 
     @Override
     public void loadData() {

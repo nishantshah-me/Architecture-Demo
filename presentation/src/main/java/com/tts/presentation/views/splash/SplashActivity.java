@@ -13,19 +13,12 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         new Handler().postDelayed(() -> {
             navigator.navigateToLogin(SplashActivity.this);
             finish();
         },1500);
     }
 
-    @Override
-    protected int getLayoutResource() {
-        return R.layout.activity_main;
-    }
 
-    @Override
-    protected BasePresenter getPresenter() {
-        return null;
-    }
 }

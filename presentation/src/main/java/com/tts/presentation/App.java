@@ -3,7 +3,10 @@ package com.tts.presentation;
 import android.app.Application;
 
 import com.facebook.stetho.Stetho;
+import com.tts.data.di.modules.DatabaseModule;
 import com.tts.presentation.di.component.ApplicationComponent;
+
+
 import com.tts.presentation.di.component.DaggerApplicationComponent;
 import com.tts.presentation.di.module.AppModule;
 
@@ -21,8 +24,9 @@ public class App extends Application {
 
     private void initInjector() {
         AppModule appModule=new AppModule(this);
-        mApplicationComponent= DaggerApplicationComponent.builder()
+       mApplicationComponent= DaggerApplicationComponent.builder()
                 .appModule(appModule)
+                .databaseModule(new DatabaseModule())
                 .build();
 
     }

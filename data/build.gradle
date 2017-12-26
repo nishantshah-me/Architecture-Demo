@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion "27.0.1"
 
 
     defaultConfig {
@@ -39,6 +39,12 @@ dependencies {
 
     //gson
     compile 'com.google.code.gson:gson:2.8.2'
+
+    // Dagger
+    compile "com.google.dagger:dagger:2.12"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.12"
+    compile 'javax.annotation:jsr250-api:1.0'
+    compile 'javax.inject:javax.inject:1'
 
     //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
