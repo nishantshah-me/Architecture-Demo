@@ -7,6 +7,14 @@ It provides lifecycle-aware Presenter with support of LifeCycle and local data s
 This demo project uses example API as a remote data source.
 It loads and shows all newest Android questions.
 
+Clean architecture
+-----------------
+![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture.png)
+
+Architectural approach
+-----------------
+![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture_layers.png)
+
 ### Libraries:  
 * Architecture Components: [Room](https://developer.android.com/reference/android/arch/persistence/room/package-summary.html) + 
 [Lifecycle](https://developer.android.com/reference/android/arch/lifecycle/package-summary.html).
