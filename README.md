@@ -7,13 +7,13 @@ It provides lifecycle-aware Presenter with support of LifeCycle and local data s
 This demo project uses example API as a remote data source.
 It loads and shows all newest Android questions.
 
-Clean architecture
------------------
-![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture.png)
+### Architectural approach
 
-Architectural approach
------------------
 ![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture_layers.png)
+
+### Architectural reactive approach
+
+![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture_layers_details.png)
 
 ### Libraries:  
 * Architecture Components: [Room](https://developer.android.com/reference/android/arch/persistence/room/package-summary.html) + 
@@ -30,5 +30,12 @@ Architectural approach
  [Hamcrest](https://github.com/hamcrest/JavaHamcrest)
 * Developer Debugging Tools: [Stetho](https://github.com/facebook/stetho) +
  [LeakCanary](https://github.com/square/leakcanary)
+ 
+### Discussions
+Refer to the issues section: https://github.com/nishant-neosoft/Architecture-Demo/issues
+ 
+### Credit 
+Fernando Cejas's [demo](https://github.com/android10/Android-CleanArchitecture)
+
 ### License
 This project is available under the MIT license. See the LICENSE file for more info.
